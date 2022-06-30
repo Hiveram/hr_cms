@@ -8,8 +8,6 @@ class DB {
     private $pass = '';
     private $charset = 'utf8mb4';
 
-    private $dsn = "mysql:host=$host;dbname=$db;charset=$charset"; 
-
     private $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -20,7 +18,7 @@ class DB {
 
     function __constructor() {
         try {
-            $this->pdo = new PDO($dsn, $user, $pass, $options);
+            $this->pdo = new PDO("mysql:host=".$host.";dbname=".$db.";charset=".$charset, $user, $pass, $options);
         } catch (PDOException $e) {
              throw new PDOException($e->getMessage(), (int)$e->getCode());
         } 
